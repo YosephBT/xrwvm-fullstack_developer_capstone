@@ -124,3 +124,27 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+
+.vertical-line {
+  width: 3px; 
+  height:  200px; 
+  background-color: rgb(54, 54, 54); 
+  margin: 40px auto; 
+  position:absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.contact-main-img{
+    width: 500px;
+    margin: 0 auto; 
+}
+.card-contact{
+  display: flex;  
+  flex-direction: column;
+  margin-left:5%;
+  margin-right:5%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  color:rgb(68, 68, 183);
+}
