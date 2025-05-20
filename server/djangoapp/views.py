@@ -50,8 +50,10 @@ def registration(request):
     email = data['email']
     
     if User.objects.filter(username=username).exists():
-        return JsonResponse({"userName": username, "error": "Already Registered"})
-    
+        return 
+        JsonResponse({"userName": username, 
+        "error": "Already Registered"})
+        
     logger.debug(f"{username} is a new user")
     user = User.objects.create_user(
         username=username,
@@ -69,7 +71,6 @@ def get_cars(request):
     """Retrieve all car models with their associated car makes."""
     if not CarMake.objects.exists():
         initiate()
-    
     car_models = CarModel.objects.select_related('car_make')
     cars = [
         {"CarModel": car_model.name, "CarMake": car_model.car_make.name}
@@ -105,7 +106,7 @@ def get_dealer_reviews(request, dealer_id):
         for review_detail in reviews:
             response = analyze_review_sentiments(review_detail['review'])
             # Uncomment to include sentiment in response
-            # review_detail['sentiment'] = response['sentiment']
+            review_detail['sentiment'] = response['sentiment']
         return JsonResponse({"status": 200, "reviews": reviews})
     return JsonResponse({"status": 400, "message": "Bad Request"})
 
@@ -120,5 +121,6 @@ def add_review(request):
             post_review(data)
             return JsonResponse({"status": 200})
         except Exception:
-            return JsonResponse({"status": 401, "message": "Error in posting review"})
+            return JsonResponse({"status": 401, 
+            "message": "Error in posting review"})
     return JsonResponse({"status": 403, "message": "Unauthorized"})
