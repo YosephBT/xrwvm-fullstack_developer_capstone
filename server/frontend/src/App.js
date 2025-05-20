@@ -1,3 +1,4 @@
+/*jshint sub:true*/
 import LoginPanel from "./components/Login/Login";
 import Dealers from "./components/Dealers/Dealers";
 import Dealer from "./components/Dealers/Dealer";
