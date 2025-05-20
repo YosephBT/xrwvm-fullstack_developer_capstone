@@ -48,12 +48,9 @@ def registration(request):
     first_name = data['firstName']
     last_name = data['lastName']
     email = data['email']
-    
     if User.objects.filter(username=username).exists():
-        return 
-        JsonResponse({"userName": username, 
-        "error": "Already Registered"})
-        
+        return JsonResponse({"userName": username,
+                             "error": "Already Registered"})
     logger.debug(f"{username} is a new user")
     user = User.objects.create_user(
         username=username,
@@ -121,6 +118,6 @@ def add_review(request):
             post_review(data)
             return JsonResponse({"status": 200})
         except Exception:
-            return JsonResponse({"status": 401, 
-            "message": "Error in posting review"})
+            return JsonResponse({"status": 401,
+                                 "message": "Error in posting review"})
     return JsonResponse({"status": 403, "message": "Unauthorized"})
